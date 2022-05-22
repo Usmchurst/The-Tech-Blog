@@ -36,3 +36,33 @@ const getHomePost = async (req, res) => {
     await post.save();
     res.redirect('/');
   };
+
+  const getPostById = async (req, res) => {
+    const post = await Post.findAll({
+      include: {
+        model: User,
+        as: 'User',
+      },
+      where: {
+        id: req.params.id,
+      },
+    });
+    const comment = await Comment.findAll({
+      include: {
+        model: User,
+        as: 'User',
+      },
+      where: {
+        postId: req.params.id,
+      },
+    });
+  
+    const postParsing = formatParsing(post);
+    console.log(postParsing, 'Fsghfj');
+    const commentsParsing = formatParsing(comment);
+    res.render('postDetail', {
+      title: 'The Tech Blog',
+      post: postParsing[0],
+      comments: commentsParsing,
+    });
+  };
