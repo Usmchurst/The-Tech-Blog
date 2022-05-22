@@ -66,3 +66,69 @@ const getHomePost = async (req, res) => {
       comments: commentsParsing,
     });
   };
+
+  const addCommentToPostById = async (req, res) => {
+    const post = await Post.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (!post) {
+      res.send({ error: 'no post found' });
+      return;
+    }
+    const comment = Comment.build({
+      content: req.body.comment,
+      postId: req.params.id,
+      userId: req.userId,
+    });
+    await comment.save();
+    res.redirect('/posts/' + req.params.id);
+  };
+  
+  // update post by id
+  const getEditPostHandlebar = async (req, res) => {
+    const post = await Post.findAll({
+      where: {
+        id: req.params.id,
+      },
+    });
+    const postParsing = formatParsing(post)[0];
+    res.render('editPost', { title: 'Dashboard', post: postParsing });
+  };
+  
+  const updatPostById = async (req, res) => {
+    const post = await Post.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+  
+    post.title = req.body.title;
+    post.content = req.body.content;
+    await post.save();
+    res.redirect('/dashboard');
+  };
+  
+  const deletPostById = async (req, res) => {
+    const post = await Post.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+  
+    await post.destroy();
+    res.redirect('/dashboard');
+  };
+  
+  module.exports = {
+    getDashboardPost,
+    getHomePost,
+    getAddPostHandlerbar,
+    addPost,
+    getPostById,
+    addCommentToPostById,
+    getEditPostHandlebar,
+    updatPostById,
+    deletPostById,
+  };
