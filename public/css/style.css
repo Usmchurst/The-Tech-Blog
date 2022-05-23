@@ -1,0 +1,39 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #585E89 !important;
+}
+
+* {
+    box-sizing: content-box;
+}
+
+/* header */
+
+.main_title {
+    font-size: 30px;
+    /* background-color: white; */
+    padding: 6px;
+    margin-bottom: 5px;
+}
+.dashboard-section {
+    min-height: calc(100vh - 101px);
+    padding: 30px;
+    position: relative;
+}
+.newpost_btn {
+    position: absolute;
+    bottom: 30px;
+    transform: translateX(-50%);
+    left: 50%;
+    background-color: #2D3047 !important;
+    /* width: 100px; */
+    border: none;
+}
+
+.bg_darkblue{
+    background-color: #2D3047 !important;
+}
+.border_darkblue{
+    border: 2px solid #2D3047 !important;
+}
