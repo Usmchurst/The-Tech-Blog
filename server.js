@@ -45,9 +45,6 @@ const sess = {
 
 app.use(session(sess));
 sessionStore.sync();
-app.use((req,res,next)=>{
- next()
-})
 app.use(methodOverride('_method'));
 // Inform Express.js on which template engine to use
 

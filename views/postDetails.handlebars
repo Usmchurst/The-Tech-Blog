@@ -1,17 +1,18 @@
 <section class="container">
   {{!-- {{#each post}} --}}
-    <div class="border border-2 border-danger mt-4">
-      <div class="bg-danger p-2 d-flex justify-content-between">
+    <div class="border_darkblue  mt-4">
+      <div class="bg_darkblue text-white  p-2 d-flex justify-content-between" >
         <h4>{{this.post.title}}</h4>
-        <p>Power by <strong>{{post.User.userName}}</strong> on {{post.createdAt}}</p>
+        <p>Power by <strong>{{post.User.userName}}</strong> on {{dateFormat post.createdAt}}</p>
       </div>
-      <p class="p-2">{{post.content}}</p>
+      <p class="p-2" style="min-height: 100px;">{{post.content}}</p>
     </div>
 
   {{!-- {{/each}} --}}
 
-  <div class="card mt-3">
-    <div class="card-header">
+  <div class="card mt-3 bg-transparent border_darkblue " >
+    <div class="card-header text-white bg_darkblue">
+      commments
     </div>
     <div class="card-body">
       {{#each comments}}
@@ -24,8 +25,8 @@
     </div>
   </div>
 
-    <div class="border border-2 border-danger mt-3">
-      <p class="bg-danger p-2 text-white">comment</p>
+    <div class="border_darkblue mt-3">
+      <p class="bg_darkblue p-2 text-white">comment</p>
       <form method="post" action="/post/comment/{{post.id}}" class="p-2">
         <div class="mb-3">
           <label for="comment" class="form-label">Comment</label>
